@@ -1,0 +1,17 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Boblightd is a daemon that translates light data from clients into commands for external controllers.
+
+
+= Details =
+
+{{{
+Usage: boblightd [OPTION]
+
+  options:
+
+  -c  set the config file, default is /etc/boblight.conf
+  -f  fork
+}}}
