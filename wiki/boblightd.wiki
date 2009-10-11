@@ -16,4 +16,40 @@ Usage: boblightd [OPTION]
 
 Boblightd needs a config file so it knows what to do at startup, the default file it tries to open is /etc/boblight.conf, this can be changed with the -c flag, for example: "boblightd -c /home/user/boblight.conf".
 
-By default boblight does not fork, so if you want to start it from a boot script you should use the -f flag.
+By default boblightd does not fork, so if you want to start it from a boot script you should use the -f flag.
+
+Boblightd catches SIGTERM and SIGINT, so it can be stopped by pressing ctrl-c in the terminal it was started at (presuming it didn't fork), or by killall, at which point it will kick off all the clients and shut down the devices properly.
+
+It keeps a logfile at "~/.boblight/boblightd.log" and when there's an old log present with that name it will move it to "~/.boblight/boblightd.log.old"
+
+The log is currently also printed to stdout, it looks something like this:
+
+{{{
+7:12:35 start of log /home/bob/.boblight/boblightd.log                (InitLog)
+17:12:35 boblight revision: 151                                           (main)
+17:12:35 starting ./boblightd -c ../boblight.conf                   (PrintFlags)
+17:12:35 opening ../boblight.conf                  (CConfig::LoadConfigFromFile)
+17:12:35 checking config lines                            (CConfig::CheckConfig)
+17:12:35 config lines valid                               (CConfig::CheckConfig)
+17:12:35 building config                                  (CConfig::BuildConfig)
+17:12:35 built config successfully                        (CConfig::BuildConfig)
+17:12:35 Starting connection handler on *:19333    (CConnectionHandler::Process)
+17:12:35 Starting clients handler                     (CClientsHandler::Process)
+17:12:35 starting device ambilight1 on "/dev/ttyUSB0"         (CDevice::Process)
+17:12:35 controller on /dev/ttyUSB0 opened         (CDeviceLtbl::OpenController)
+17:12:35 device ambilight1 opened                             (CDevice::Process)
+17:12:35 controller on /dev/ttyUSB0 closed        (CDeviceLtbl::CloseController)
+17:12:46 127.0.0.1:41213 connected                 (CConnectionHandler::Process)
+17:12:46 127.0.0.1:41213 said hello              (CClientsHandler::ParseMessage)
+17:12:46 127.0.0.1:41213 priority set to 128         (CClientsHandler::ParseSet)
+17:12:46 controller on /dev/ttyUSB0 opened         (CDeviceLtbl::OpenController)
+17:12:48 127.0.0.1:41213 Connection closed            (CClientsHandler::Process)
+17:12:48 removing 127.0.0.1:41213                (CClientsHandler::RemoveClient)
+17:12:48 controller on /dev/ttyUSB0 closed        (CDeviceLtbl::CloseController)
+17:12:52 caught SIGTERM                                          (SignalHandler)
+17:12:52 device ambilight1 closed                             (CDevice::Process)
+17:12:52 device ambilight1 stopped                            (CDevice::Process)
+17:12:53 Stopping connection handler               (CConnectionHandler::Process)
+17:12:53 Stopping clients handler                     (CClientsHandler::Process)
+17:12:53 exiting                                                          (main)
+}}}
