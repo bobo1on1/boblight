@@ -13,3 +13,7 @@ Usage: boblightd [OPTION]
   -c  set the config file, default is /etc/boblight.conf
   -f  fork
 }}}
+
+Boblightd needs a config file so it knows what to do at startup, the default file it tries to open is /etc/boblight.conf, this can be changed with the -c flag, for example: "boblightd -c /home/user/boblight.conf".
+
+By default boblight does not fork, so if you want to start it from a boot script you should use the -f flag.
