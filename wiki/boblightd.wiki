@@ -25,7 +25,7 @@ It keeps a logfile at "~/.boblight/boblightd.log" and when there's an old log pr
 The log is currently also printed to stdout, it looks something like this:
 
 {{{
-7:12:35 start of log /home/bob/.boblight/boblightd.log                (InitLog)
+17:12:35 start of log /home/bob/.boblight/boblightd.log                (InitLog)
 17:12:35 boblight revision: 151                                           (main)
 17:12:35 starting ./boblightd -c ../boblight.conf                   (PrintFlags)
 17:12:35 opening ../boblight.conf                  (CConfig::LoadConfigFromFile)
