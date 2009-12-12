@@ -1,0 +1,13 @@
+#summary Explanation of the boblight.conf config file for boblightd.
+
+= Introduction =
+
+[Boblightd] needs a config file.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
