@@ -2,7 +2,7 @@
 
 = Introduction =
 
-[Boblightd] needs a config file.
+[boblightd] needs a config file.
 
 
 = Details =
