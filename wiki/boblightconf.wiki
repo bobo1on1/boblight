@@ -6,4 +6,4 @@
 
 = Details =
 
-boblight.conf has 4 different type of sections, ([)global(]), [device], [color] and [light].
+boblight.conf has 4 different type of sections, \[global\], [device], [color] and [light].
