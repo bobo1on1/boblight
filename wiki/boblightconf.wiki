@@ -2,8 +2,7 @@
 
 = Introduction =
 
-[boblightd] needs a config file.
-
+[boblightd] needs a config file so it knows what to do at startup, the default file it tries to open is /etc/boblight.conf.
 
 = Details =
 
