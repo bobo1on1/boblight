@@ -1,3 +1,5 @@
+#summary Explanation of the boblightd daemon.
+
 = Introduction =
 
 Boblightd is a daemon that translates light data from clients into commands for external controllers.
