@@ -26,36 +26,37 @@ It keeps a logfile at "~/.boblight/boblightd.log" which it opens in append mode,
 The log is currently also printed to stdout, it looks something like this:
 
 {{{
-2009-12-13 03:00:56 start of log /home/bob/.boblight/boblightd.log
-2009-12-13 03:00:56 boblight revision: 213M
-2009-12-13 03:00:56 starting ./boblightd
-2009-12-13 03:00:56 opening /etc/boblight.conf
-2009-12-13 03:00:56 checking config lines
-2009-12-13 03:00:56 config lines valid
-2009-12-13 03:00:56 building config
-2009-12-13 03:00:56 built config successfully
-2009-12-13 03:00:56 starting connection handler on *:19333
-2009-12-13 03:00:56 starting clients handler
-2009-12-13 03:00:56 starting timers
-2009-12-13 03:00:56 starting devices
-2009-12-13 03:00:56 ambilight1: starting with output "/dev/ttyUSB0"
-2009-12-13 03:00:56 ambilight1: setting up
-2009-12-13 03:00:56 ambilight1: controller opened
-2009-12-13 03:00:56 ambilight1: setup succeeded
-2009-12-13 03:00:56 ambilight1: controller closed
-2009-12-13 03:01:02 caught SIGTERM
-2009-12-13 03:01:02 signaling devices to stop
-2009-12-13 03:01:02 signaling connection handler to stop
-2009-12-13 03:01:02 signaling clients handler to stop
-2009-12-13 03:01:02 signaling timers to stop
-2009-12-13 03:01:02 waiting for devices to stop
-2009-12-13 03:01:02 disconnecting clients
-2009-12-13 03:01:02 clients handler stopped
-2009-12-13 03:01:02 ambilight1: closed
-2009-12-13 03:01:02 ambilight1: stopped
-2009-12-13 03:01:02 waiting for timers to stop
-2009-12-13 03:01:02 waiting for connection handler to stop
-2009-12-13 03:01:02 connection handler stopped
-2009-12-13 03:01:02 waiting for clients handler to stop
-2009-12-13 03:01:02 exiting
+(InitLog)                     
+(InitLog)                     start of log /home/bob/.boblight/boblightd.log
+(main)                        boblight revision: 213:261M
+(PrintFlags)                  starting ./boblightd
+(CConfig::LoadConfigFromFile) opening /etc/boblight.conf
+(CConfig::CheckConfig)        checking config lines
+(CConfig::CheckConfig)        config lines valid
+(CConfig::BuildConfig)        building config
+(CConfig::BuildConfig)        built config successfully
+(CConnectionHandler::Process) starting connection handler on *:19333
+(CClientsHandler::Process)    starting clients handler
+(main)                        starting timers
+(main)                        starting devices
+(CDevice::Process)            ambilight1: starting with output "/dev/ttyUSB0"
+(CDevice::Process)            ambilight1: setting up
+(CDeviceLtbl::OpenController) ambilight1: controller opened
+(CDevice::Process)            ambilight1: setup succeeded
+(CDeviceLtbl::CloseController)ambilight1: controller closed
+(SignalHandler)               caught SIGTERM
+(main)                        signaling devices to stop
+(main)                        signaling connection handler to stop
+(main)                        signaling clients handler to stop
+(main)                        signaling timers to stop
+(main)                        waiting for devices to stop
+(CClientsHandler::Process)    disconnecting clients
+(CClientsHandler::Process)    clients handler stopped
+(CDevice::Process)            ambilight1: closed
+(CDevice::Process)            ambilight1: stopped
+(main)                        waiting for timers to stop
+(main)                        waiting for connection handler to stop
+(CConnectionHandler::Process) connection handler stopped
+(main)                        waiting for clients handler to stop
+(main)                        exiting
 }}}
