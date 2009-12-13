@@ -25,12 +25,42 @@ port      19333
 
 == device ==
 
-A `[device]` section specifies a device for boblightd, it has (ENTERNUMBERHERE) settings:<br>
+A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
- * name:<br>Specifies the name of the device, this setting is mandatory and must be unique (you can't have two devices with the same name).
+ * name<br>Specifies the name of the device, this setting is mandatory and must be unique (you can't have two devices with the same name).
 
+ * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound and popen.
 
+ * output<br>Specifies where the device has its output, this setting is mandatory.<br>For ltbl, momo and atmo devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default) and for popen devices this is something that can be executed (dd of=/dev/null).
+
+ * channels<br>Specifies the number of channels the device has, this setting is mandatory.
+
+ * interval<br>Specifies the iteration interval in microseconds for ltbl, momo, atmo and popen, this setting is mandatory for those devices.
+
+ * prefix<br>Specifies a prefix in hex sent before each burst of rgb information, this setting is optional and only applies to momo devices.
+
+ * rate<br>Specifies the baudrate for momo, atmo and ltbl devices, specifies the samplerate for sound devices, this setting is mandatory for those devices.
+
+ * period<br>Specifies the period in samples for sound devices, in other words how many samples are written per iteration, this setting is mandatory.<br>A good value for a samplerate of 48000 is 1024, this updates the output 46.875 times per second.
+
+ * latency<br>Specifies the latency for sound devices in microseconds, this setting is optional.<br>If this is not specified the default portaudio low output latency is used (whatever that is, it seems pretty low anyway).
+
+Example `[device]` sections:
+
+{{{
+#ltbl device with 3 channels on /dev/ttyUSB0, baudrate of 115k2 and updated 50 times per second (20000 microseconds, 1/50 seconds).
+#oh did I mention you can add comments in boblight.conf by prefixing them with #?
+
+[device]
+name 		device1
+output		/dev/ttyUSB0
+channels	3
+type		ltbl
+interval	20000
+rate            115200
+}}}
 
 == color ==
+I'm done for the day, more info soon.
 
 == light ==
