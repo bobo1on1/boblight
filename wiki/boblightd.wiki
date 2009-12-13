@@ -22,7 +22,8 @@ By default boblightd does not fork, so if you want to start it from a boot scrip
 
 Boblightd catches SIGTERM and SIGINT, so it can be stopped by pressing ctrl-c in the terminal it was started at (presuming it didn't fork), or by killall, at which point it will kick off all the clients and shut down the devices properly.
 
-It keeps a logfile at "~/.boblight/boblightd.log" which it opens in append mode, so the file will grow until you remove it.
+It keeps a logfile at "~/.boblight/boblightd.log", any previous logfile will be renamed at startup, 5 old logfiles are kept around, the newest is boblightd.log.old.1 and the oldest is boblightd.log.old.5.
+
 The log is currently also printed to stdout, it looks something like this:
 
 {{{
