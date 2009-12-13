@@ -9,7 +9,9 @@
 boblight.conf has 4 different type of sections, [boblightconf#global [global]], [boblightconf#global [device]], [boblightconf#global [color]] and [boblightconf#global [light]].
 
 = global =
-A `[global]` section describes the interface and port to bind the listening tcp socket to, if interface is not specified boblightd will bind to all interfaces (INADDR_ANY), if no port is specified boblightd will bind to port 19333.
+A `[global]` section describes the interface and port to bind the listening tcp socket to, if interface is not specified boblightd will bind to all interfaces (INADDR_ANY), for safety reasons you should bind to interface 127.0.0.1 if you don't plan to use boblight over a network.
+
+If no port is specified boblightd will bind to port 19333.
 
 Example `[global]` section:
 {{{
