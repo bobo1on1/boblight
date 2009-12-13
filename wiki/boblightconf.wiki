@@ -198,3 +198,84 @@ color		blue    device1 9
 hscan		0.0 100.0
 vscan		0.0 50.0
 }}}
+
+== example configuration files ==
+
+{{{
+#single light on a 3 channel ltbl device
+
+[global]
+interface	127.0.0.1
+
+[device]
+name 		device1
+output		/dev/ttyUSB0
+channels	3
+type		ltbl
+interval	20000
+rate            115200
+
+[color]
+name		red
+rgb		FF0000
+
+[color]
+name		green
+rgb		00FF00
+
+[color]
+name		blue
+rgb		0000FF
+
+[light]
+name		main
+color		red     device1 1
+color		green   device1 2
+color		blue    device1 3
+hscan		0 100
+vscan		0 100
+}}}
+
+{{{
+#two lights on a 12 channel momo device
+
+[global]
+interface	127.0.0.1
+
+[device]
+name 		device1
+output		/dev/ttyACM0
+channels	12
+type		momo
+interval	20000
+prefix          FF
+rate            19200
+
+[color]
+name		red
+rgb		FF0000
+
+[color]
+name		green
+rgb		00FF00
+
+[color]
+name		blue
+rgb		0000FF
+
+[light]
+name		right
+color		red 	ambilight1 2
+color		green 	ambilight1 4
+color		blue 	ambilight1 6
+hscan		50 100
+vscan		0 100
+
+[light]
+name		left
+color		red     ambilight1 1
+color		green   ambilight1 3
+color		blue    ambilight1 5
+hscan		0 50
+vscan		0 100
+}}}
