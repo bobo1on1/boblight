@@ -8,9 +8,15 @@
 
 boblight.conf has 4 different type of sections, [boblightconf#global [global]], [boblightconf#global [device]], [boblightconf#global [color]] and [boblightconf#global [light]].
 
-
 = global =
+A `[global]` section describes the interface and port to bind the listening tcp socket to, if interface is not specified boblightd will bind to all interfaces (binds to *), of no port is specified it will bind to port 19333.
 
+Example `[global]` section:
+{{{
+[global]
+interface 127.0.0.1
+port      19333
+}}}
 
 = device =
 
