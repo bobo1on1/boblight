@@ -139,10 +139,62 @@ rgb		0000FF
 [color]
 name		yellow
 rgb		FFFF00
+adjust		0.5
+blacklevel	0.1
+gamma		2.3
 
 [color]
 name		white
 rgb		FFFFFF
+adjust		0.3
+blacklevel	0.7
+gamma		1.6
 }}}
 
 == light ==
+
+A `[light]` section specifies a light for boblightd, it has 4 settings:
+
+ * name<br>Specifies the name of this light, this setting is mandatory and must be unique (you can't have two lights with the same name).
+
+ * color<br>Specifies a color on this light, this setting is optional, you can specify as many colors as this light has.<br>The synax is color colorname devicename devicechannel.<br>Example: color red device1 1
+
+ * hscan<br>Specifies the horizontal scanrange for this light, this setting is optional, the default is 0.0 100.0<br>This setting only has an effect for clients that react to an image like boblight-X11 and boblight-v4l. The syntax is hscan begin end.<br>Begin and end specify the percentage of the horizontal range the light should react to. Example: hscan 0.0 50.0
+
+ * vscan<br>Specifies the vertical scanrange for this light, same as hscan.
+
+Example light sections:
+
+{{{
+[light]
+name		right
+color		red 	device1 1
+color		green 	device1 2
+color		blue 	device1 3
+hscan		50 100
+vscan		0 100
+
+[light]
+name		left
+color		red     device1 4
+color		green   device1 5
+color		blue    device1 6
+hscan		0 50
+vscan		0 100
+
+[light]
+name		center
+color		red     device1 7
+color		green   device1 8
+color		blue    device1 9
+hscan		33.3 66.6
+vscan		33.3 66.6
+
+[light]
+name		top
+color		red     device1 7
+color		green   device1 8
+color		blue    device1 9
+hscan		0.0 100.0
+vscan		0.0 50.0
+}}}
