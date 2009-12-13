@@ -121,4 +121,28 @@ A `[color]` section specifies a color for boblightd, it has 5 settings:
 
  * blacklevel<br>Specifies the blacklevel for this color, this setting is optional, the default is 0.0.<br>This setting is a minimum value for the channel this color is on, the range goes from 0.0 to 1.0.
 
+Example color sections:
+
+{{{
+[color]
+name		red
+rgb		FF0000
+
+[color]
+name		green
+rgb		00FF00
+
+[color]
+name		blue
+rgb		0000FF
+
+[color]
+name		yellow
+rgb		FFFF00
+
+[color]
+name		white
+rgb		FFFFFF
+}}}
+
 == light ==
