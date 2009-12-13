@@ -6,10 +6,10 @@
 
 = Details =
 
-boblight.conf has 4 different type of sections, [boblightconf#global [global]], [boblightconf#global [device]], [boblightconf#global [color]] and [boblightconf#global [light]].
+boblight.conf has 4 different type of sections: [boblightconf#global [global]], [boblightconf#global [device]], [boblightconf#global [color]] and [boblightconf#global [light]].
 
-= global =
-A `[global]` section has two settings: interface and port.[br]
+== global ==
+A `[global]` section has two settings: interface and port.<br>
 You can specify as many global settings as you want, although there's no point in having more than one.
 
 Interface specifies where to bind the listening tcp socket, if interface is not specified boblightd will bind to all interfaces (INADDR_ANY) by default, for safety reasons you should bind to interface 127.0.0.1 if you don't plan to use boblight over a network.
@@ -23,42 +23,14 @@ interface 127.0.0.1
 port      19333
 }}}
 
-= device =
+== device ==
 
-= color =
+A `[device]` section specifies a device for boblightd, it has (ENTERNUMBERHERE) settings:<br>
 
-= light =
-
-
+ * name:<br>Specifies the name of the device, this setting is mandatory and must be unique (you can't have two devices with the same name).
 
 
 
+== color ==
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-= test =
+== light ==
