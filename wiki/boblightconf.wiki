@@ -31,7 +31,7 @@ A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
  * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound and popen.
 
- * output<br>Specifies where the device has its output, this setting is mandatory.<br>For ltbl, momo and atmo devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default) and for popen devices this is something that can be executed (dd of=/dev/null).
+ * output<br>Specifies where the device has its output, this setting is mandatory.<br>For ltbl, momo and atmo devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default) and for popen devices this is something that can be executed (dd of=/dev/null).<br>This line is parsed from the first whitespace after the word output to the end of the line, including any comments and trailing whitespace!
 
  * channels<br>Specifies the number of channels the device has, this setting is mandatory.
 
@@ -49,7 +49,55 @@ Example `[device]` sections:
 
 {{{
 #ltbl device with 3 channels on /dev/ttyUSB0, baudrate of 115k2 and updated 50 times per second (20000 microseconds, 1/50 seconds).
-#oh did I mention you can add comments in boblight.conf by prefixing them with #?
+
+[device]
+name 		device1
+output		/dev/ttyUSB0
+channels	3
+type		ltbl
+interval	20000
+rate            115200
+}}}
+
+{{{
+#momo device with 12 channels, FF prefix and 19k2 baudrate
+
+[device]
+name 		device1
+output		/dev/ttyACM0
+channels	12
+type		momo
+interval	20000
+prefix          FF
+rate            19200
+}}}
+
+{{{
+#popen device dumping everything to /dev/null
+
+[device]
+name 		device1
+output		dd bs=1 > /dev/null 2>&1
+channels	6
+type		popen
+interval	20000
+}}}
+
+{{{
+#sound device using the default alsa output
+
+[device]
+name		device1
+output		ALSA:default
+channels	6
+type		sound
+latency		20000
+period		1024
+rate		48000
+}}}
+
+{{{
+#ltbl device with 3 channels and 115k2 baudrate
 
 [device]
 name 		device1
@@ -61,6 +109,16 @@ rate            115200
 }}}
 
 == color ==
-I'm done for the day, more info soon.
+A `[color]` section specifies a color for boblightd, it has 5 settings:
+
+ * name<br>Specifies the name of the color, this setting is mandatory and must be unique (you can't have two colors with the same name.
+
+ * rgb<br>Specifies the rgb value of this color, this setting is mandatory, it's in RRGGBB hex format.
+
+ * gamma<br>Specifies the gamma for this color, this setting is optional, the default is 1.0.
+
+ * adjust<br>Specifies the adjust for this color, this setting is optional, the default is 1.0.<br>This is a multiplier for the channel this color is on, the ranges goes from 0.0 to 1.0.
+
+ * blacklevel<br>Specifies the blacklevel for this color, this setting is optional, the default is 0.0.<br>This setting is a minimum value for the channel this color is on, the range goes from 0.0 to 1.0.
 
 == light ==
