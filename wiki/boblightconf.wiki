@@ -9,7 +9,7 @@
 boblight.conf has 4 different type of sections, [boblightconf#global [global]], `[device]`, `[color]` and `[light]`.
 
 
-= [global] =
+= `[global]` =
 
 
 = device =
