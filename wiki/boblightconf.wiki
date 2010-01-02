@@ -6,7 +6,7 @@
 
 = Details =
 
-boblight.conf has 4 different type of sections: [boblightconf#global [global]], [boblightconf#global [device]], [boblightconf#global [color]] and [boblightconf#global [light]].
+boblight.conf has 4 different type of sections: [boblightconf#global [global]], [boblightconf#device [device]], [boblightconf#color [color]] and [boblightconf#light [light]].
 
 == global ==
 A `[global]` section has two settings: interface and port.<br>
