@@ -45,9 +45,7 @@ A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
  * latency<br>Specifies the latency for sound devices in microseconds, this setting is optional.<br>If this is not specified the default portaudio low output latency is used (whatever that is, it seems pretty low anyway).
 
- * allowsync<br>Allows sync mode when a client requests it, this setting is optional, the default is on.<br>When sync mode is on, a device gets woken up immediately when a client sends input to a light that that device is using, this works quite well with clients like boblight-X11 and boblight-v4l because the light updates are exactly synchronized to the client's input.<br>
-However when a client updates too frequently or too many clients are using one device, the device's output can become constipated and all hell will break loose.<br>
-Sync mode can also be disabled in boblight-X11 or boblight-v4l by using the "-y off "flags.<br>Sync mode doesn't work with sound devices, they run synchronized to the soundcard and can't be woken up early.<br>
+ * allowsync<br>Allows sync mode when a client requests it, this setting is optional, the default is on.<br>When sync mode is on, a device gets woken up immediately when a client sends input to a light that that device is using, this works quite well with clients like boblight-X11 and boblight-v4l because the light updates are exactly synchronized to the client's input.<br>However when a client updates too frequently or too many clients are using one device, the device's output can become constipated and all hell will break loose.<br>Sync mode can also be disabled in boblight-X11 or boblight-v4l by using the "-y off "flags.<br>Sync mode doesn't work with sound devices, they run synchronized to the soundcard and can't be woken up early.<br>
 
 Example `[device]` sections:
 
