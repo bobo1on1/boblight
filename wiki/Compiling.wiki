@@ -1,0 +1,9 @@
+#summary Compiling boblight on Ubuntu.
+
+Compiling boblight on Ubuntu.
+
+First step: install necessary dependencies:
+
+{{{sudo apt-get install libx11-dev libgl1-mesa-dev libxrender-dev portaudio19-dev libavcodec-dev libavformat-dev libswscale-dev libavdevice-dev}}}
+
+Second step: write the rest of this page and email it to the boblight developer (in other words I'm not done yet).
