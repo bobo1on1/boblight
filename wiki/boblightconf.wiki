@@ -29,9 +29,9 @@ A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
  * name<br>Specifies the name of the device, this setting is mandatory and must be unique (you can't have two devices with the same name).
 
- * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound, popen and dioder.
+ * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound, popen, dioder and karate.
 
- * output<br>Specifies where the device has its output, this setting is mandatory.<br>For ltbl, momo, atmo and dioder devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default) and for popen devices this is something that can be executed (dd of=/dev/null).<br>This line is parsed from the first whitespace after the word output to the end of the line, including any comments and trailing whitespace!
+ * output<br>Specifies where the device has its output, this setting is mandatory.<br>For ltbl, momo, atmo, dioder and karate devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default) and for popen devices this is something that can be executed (dd of=/dev/null).<br>This line is parsed from the first whitespace after the word output to the end of the line, including any comments and trailing whitespace!
 
  * channels<br>Specifies the number of channels the device has, this setting is mandatory.
 
@@ -39,7 +39,7 @@ A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
  * prefix<br>Specifies a prefix in hex sent before each burst of rgb information, this setting is optional and only applies to momo devices.
 
- * rate<br>Specifies the baudrate for momo, atmo, ltbl and dioder devices, specifies the samplerate for sound devices, this setting is mandatory for those devices.
+ * rate<br>Specifies the baudrate for momo, atmo, ltbl, dioder and karate devices, specifies the samplerate for sound devices, this setting is mandatory for those devices.
 
  * period<br>Specifies the period in samples for sound devices, in other words how many samples are written per iteration, this setting is mandatory.<br>A good value for a samplerate of 48000 is 1024, this updates the output 46.875 times per second.
 
