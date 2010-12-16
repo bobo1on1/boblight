@@ -24,7 +24,7 @@ Boblightd catches SIGTERM and SIGINT, so it can be stopped by pressing ctrl-c in
 
 It keeps a logfile at "~/.boblight/boblightd.log", any previous logfile will be renamed at startup, 5 old logfiles are kept around, the newest is boblightd.log.old.1 and the oldest is boblightd.log.old.5.
 
-The log is currently also printed to stdout, it looks something like this:
+The log is currently also printed to stderr, it looks something like this:
 
 {{{
 (InitLog)                     
