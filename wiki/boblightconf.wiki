@@ -51,6 +51,8 @@ A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
  * debug<br>Turns on debug mode for the device, this setting is optional, the default is off.<br>For momo, atmo, dioder, ltbl and karate devices any data that is written to the serial port or read from the serial port is printed as hex to stdout, for popen devices the float data is written to stdout.<br>
 
+ * delayafteropen<br>Delays writing to the device for n microseconds after opening, this setting is optional and only applies to momo, atmo, karate, dioder, popen and LTBL devices, the default is 0 (no delay).<br>Useful for arduino devices who get reset after opening the serial port for the first time (because DTR is driven low), a value of 1000000 for a 1 second delay seems to work ok.<br>
+
 Example `[device]` sections:
 
 {{{
