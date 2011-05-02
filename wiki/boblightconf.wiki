@@ -39,6 +39,8 @@ A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
  * prefix<br>Specifies a prefix in hex sent before each burst of rgb information, this setting is optional and only applies to momo devices.
 
+ * postfix<br>Specifies a postfix in hex sent after each burst of rgb information, this setting is optional and only applies to momo devices.
+
  * rate<br>Specifies the baudrate for momo, atmo, ltbl, dioder and karate devices, specifies the samplerate for sound devices, this setting is mandatory for those devices.
 
  * bits<br>Specifies the number of bits per channel, this only applies to momo, atmo and karate devices, this setting is optional, the default is 8.<br>Boblight will only send the number of bytes needed to hold the number of bits, in big endian format, so for 1 to 8 bits it will send one byte, for 9 to 16 it will send two etc.
