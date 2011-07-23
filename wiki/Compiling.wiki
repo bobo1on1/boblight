@@ -78,4 +78,5 @@ Fifth step: Testing the lights:
 	
 	An example one could use is:
 		boblight-X11 -x -i 0.03 -o value=5.0 -o saturation=2.0 -o speed=60.0
-	
+
+Written by: jjrh
