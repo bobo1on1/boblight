@@ -45,6 +45,8 @@ A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
  * bits<br>Specifies the number of bits per channel, this only applies to momo, atmo and karate devices, this setting is optional, the default is 8.<br>Boblight will only send the number of bytes needed to hold the number of bits, in big endian format, so for 1 to 8 bits it will send one byte, for 9 to 16 it will send two etc.
 
+ * max<br>This is the same as the bits value, except you specify the maximum output value, so that you're not limited to bits^2-1.<br>This setting is optional, the default is 255.
+
  * period<br>Specifies the period in samples for sound devices, in other words how many samples are written per iteration, this setting is mandatory.<br>A good value for a samplerate of 48000 is 1024, this updates the output 46.875 times per second.
 
  * latency<br>Specifies the latency for sound devices in microseconds, this setting is optional.<br>If this is not specified the default portaudio low output latency is used (whatever that is, it seems pretty low anyway).
