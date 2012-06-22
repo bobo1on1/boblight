@@ -25,13 +25,13 @@ port      19333
 
 == device ==
 
-A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
+A `[device]` section specifies a device for boblightd, it has the following settings:<br>
 
  * name<br>Specifies the name of the device, this setting is mandatory and must be unique (you can't have two devices with the same name).
 
- * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound, popen, dioder and karate.
+ * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound, popen, dioder, karate and ibelight.
 
- * output<br>Specifies where the device has its output, this setting is mandatory.<br>For ltbl, momo, atmo, dioder and karate devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default) and for popen devices this is something that can be executed (dd of=/dev/null).<br>This line is parsed from the first whitespace after the word output to the end of the line, including any comments and trailing whitespace!
+ * output<br>Specifies where the device has its output, this setting is mandatory except for ibelight devices.<br>For ltbl, momo, atmo, dioder and karate devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default) and for popen devices this is something that can be executed (dd of=/dev/null).<br>This line is parsed from the first whitespace after the word output to the end of the line, including any comments and trailing whitespace!
 
  * channels<br>Specifies the number of channels the device has, this setting is mandatory.
 
@@ -53,9 +53,13 @@ A `[device]` section specifies a device for boblightd, it has 9 settings:<br>
 
  * allowsync<br>Allows sync mode when a client requests it, this setting is optional, the default is on.<br>When sync mode is on, a device gets woken up immediately when a client sends input to a light that that device is using, this works quite well with clients like boblight-X11 and boblight-v4l because the light updates are exactly synchronized to the client's input.<br>However when a client updates too frequently or too many clients are using one device, the device's output can become constipated and all hell will break loose.<br>Sync mode can also be disabled in boblight-X11 or boblight-v4l by using the "-y off "flags.<br>Sync mode doesn't work with sound devices, they run synchronized to the soundcard and can't be woken up early.<br>
 
- * debug<br>Turns on debug mode for the device, this setting is optional, the default is off.<br>For momo, atmo, dioder, ltbl and karate devices any data that is written to the serial port or read from the serial port is printed as hex to stdout, for popen devices the float data is written to stdout.<br>
+ * debug<br>Turns on debug mode for the device, this setting is optional, the default is off.<br>For momo, atmo, dioder, ltbl and karate devices any data that is written to the serial port or read from the serial port is printed as hex to stdout, for popen devices the float data is written to stdout. For ibelight devices it prints the data sent and received over usb, and it sets the libusb debug level to 3.<br>
 
  * delayafteropen<br>Delays writing to the device for n microseconds after opening, this setting is optional and only applies to momo, atmo, karate, dioder, popen and LTBL devices, the default is 0 (no delay).<br>Useful for arduino devices who get reset after opening the serial port for the first time (because DTR is driven low), a value of 1000000 for a 1 second delay seems to work ok.<br>
+
+ * bus<br>Specifies the usb bus number of the device, this setting is optional and only applies to ibelight devices, when this setting is not present, boblightd will use the first ibelight device it finds, if the address setting it present it will only use a devices with that address.
+
+ * address<br>Specifies the usb address of the device, this setting is optional and only applies to ibelight devices, when this setting is not present, boblightd will use the first ibelight device it finds, if the bus setting is present it will only use a device with that bus number.<br><br>The bus and address settings can be used together to select a specific ibelight device, this is useful if you have multiple ibelight devices, if you don't know the bus and address of the device, just leave them out, boblightd will print any ibelight devices it finds to its logfile, after that you can enter them in boblight.conf and restart boblightd.
 
 Example `[device]` sections:
 
