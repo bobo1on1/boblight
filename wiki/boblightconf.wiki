@@ -29,7 +29,7 @@ A `[device]` section specifies a device for boblightd, it has the following sett
 
  * name<br>Specifies the name of the device, this setting is mandatory and must be unique (you can't have two devices with the same name).
 
- * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound, popen, dioder, karate and ibelight.
+ * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound, popen, dioder, karate, ibelight and sedu.
 
  * output<br>Specifies where the device has its output, this setting is mandatory except for ibelight devices.<br>For ltbl, momo, atmo, dioder and karate devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default) and for popen devices this is something that can be executed (dd of=/dev/null).<br>This line is parsed from the first whitespace after the word output to the end of the line, including any comments and trailing whitespace!
 
