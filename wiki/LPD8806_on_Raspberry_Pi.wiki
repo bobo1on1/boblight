@@ -1,0 +1,76 @@
+= Compiling boblight on Raspberry Pi and LPD8806 LEDs.=
+
+= Introduction =
+
+Objecive is to have a stand-alone boblight configuration without using arduino attached to a computer. Raspberry Pi is setup to receive the rendered information from [http://forum.xbmc.org/showthread.php?tid=116331 XBMC Boblight Addon] and feed the info to LPD8806 LED strand.
+
+= Whats Needed =
+  [http://www.raspberrypi.org/ Raspberry Pi]
+  
+  [http://adafruit.com/products/306 LPD8806] LEDs
+  
+  [http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/occidentalis-v0-dot-2 Occidentalis Raspberry PI image] (Others might also work as long as there is SPI support)
+  
+  
+  
+= Wiring =
+Connect as explained on adafruit.com: http://learn.adafruit.com/light-painting-with-raspberry-pi/hardware
+<br>
+<br>
+http://boblight.googlecode.com/svn/wiki/diagram.png
+<br>
+= Installation =
+
+1.[http://learn.adafruit.com/adafruit-raspberry-pi-educational-linux-distro/occidentalis-v0-dot-2 install Occidentalis v0.2]
+
+2.Log into your rpi
+{{{
+  $ ssh pi@raspberrypi.local
+}}}
+3. Install subversion
+{{{
+  $ sudo apt-get install subversion  
+}}}
+4. Clone boblight source
+
+{{{
+  $ cd ~
+  $ svn checkout http://boblight.googlecode.com/svn/trunk/ boblight-read-only
+}}}
+5. Compile:
+{{{
+  $ cd boblight-read-only/
+  $ ./configure --without-portaudio --without-x11 --without-libusb 
+}}}	
+	If everything goes well.....
+{{{
+  $ make
+  $ sudo make install
+}}}
+
+6. now configure your setup, see conf/LPD8806.conf for examples and move .conf file to /etc/boblight.conf
+{{{
+  $ sudo cp conf/LPD8806.conf /etc/boblight.conf
+}}}  
+
+7. you can test now by starting boblightd
+{{{
+  $ sudo boblightd
+}}}
+  we have to run boblightd using sudo for SPI to work
+
+8. if you like, you can add boblightd to /etc/rc.local for it to start on boot
+{{{
+  $ sudo nano /etc/rc.local
+}}}  
+  and add 
+{{{
+  /usr/local/bin/boblightd -f
+}}}  
+  before exit
+  
+9. Setup [http://forum.xbmc.org/showthread.php?tid=116331 XBMC Boblight Addon] by pointing it to Raspberry Pi IP address.
+<br>
+<br>
+Written by:<br>
+amet
