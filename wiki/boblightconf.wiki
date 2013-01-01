@@ -29,9 +29,9 @@ A `[device]` section specifies a device for boblightd, it has the following sett
 
  * name<br>Specifies the name of the device, this setting is mandatory and must be unique (you can't have two devices with the same name).
 
- * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound, popen, dioder, karate, ibelight, sedu and lpd8806.
+ * type<br>Specifies the type of the device, this setting is mandatory.<br>Possible values are ltbl, momo, atmo, sound, popen, dioder, karate, ibelight, sedu, lpd8806 and ws2801.
 
- * output<br>Specifies where the device has its output, this setting is mandatory except for ibelight devices.<br>For ltbl, momo, atmo, dioder and karate devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default), for popen devices this is something that can be executed (dd of=/dev/null), for lpd8806 devices, this is the spi device node (/dev/spidev0.0).<br>This line is parsed from the first whitespace after the word output to the end of the line, including any comments and trailing whitespace!
+ * output<br>Specifies where the device has its output, this setting is mandatory except for ibelight devices.<br>For ltbl, momo, atmo, dioder and karate devices this is a serial port (/dev/ttyS0), for sound devices this is api:device (ALSA:default), for popen devices this is something that can be executed (dd of=/dev/null), for lpd8806 and ws2801 devices, this is the spi device node (/dev/spidev0.0).<br>This line is parsed from the first whitespace after the word output to the end of the line, including any comments and trailing whitespace!
 
  * channels<br>Specifies the number of channels the device has, this setting is mandatory.
 
@@ -41,7 +41,7 @@ A `[device]` section specifies a device for boblightd, it has the following sett
 
  * postfix<br>Specifies a postfix in hex sent after each burst of rgb information, this setting is optional and only applies to momo devices.
 
- * rate<br>Specifies the baudrate for momo, atmo, ltbl, dioder, karate, SEDU and lpd8806 devices, specifies the samplerate for sound devices. this setting is mandatory for those devices.
+ * rate<br>Specifies the baudrate for momo, atmo, ltbl, dioder, karate, SEDU, lpd8806 and ws2801 devices, specifies the samplerate for sound devices. this setting is mandatory for those devices.
 
  * bits<br>Specifies the number of bits per channel, this only applies to momo, atmo and karate devices, this setting is optional, the default is 8.<br>Boblight will only send the number of bytes needed to hold the number of bits, in big endian format, so for 1 to 8 bits it will send one byte, for 9 to 16 it will send two etc.
 
