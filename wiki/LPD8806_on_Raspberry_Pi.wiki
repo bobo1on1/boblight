@@ -1,5 +1,8 @@
 = Compiling boblight on Raspberry Pi and LPD8806 LEDs.=
 
+= Update =
+Since http://code.google.com/p/boblight/source/detail?r=459 this should also work for WS2801 led strips.
+
 = Introduction =
 
 Objecive is to have a stand-alone boblight configuration without using arduino attached to a computer. Raspberry Pi is setup to receive the rendered information from [http://forum.xbmc.org/showthread.php?tid=116331 XBMC Boblight Addon] and feed the info to LPD8806 LED strand.
