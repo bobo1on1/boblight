@@ -61,6 +61,8 @@ A `[device]` section specifies a device for boblightd, it has the following sett
 
  * address<br>Specifies the usb address of the device, this setting is optional and only applies to ibelight devices, when this setting is not present, boblightd will use the first ibelight device it finds, if the bus setting is present it will only use a device with that bus number.<br><br>The bus and address settings can be used together to select a specific ibelight device, this is useful if you have multiple ibelight devices, if you don't know the bus and address of the device, just leave them out, boblightd will print any ibelight devices it finds to its logfile, after that you can enter them in boblight.conf and restart boblightd.
 
+ * threadpriority<br>When this is set, it sets the scheduler of the device thread to SCHED_FIFO, and the number after it specifies the priority of the thread. The minimum and maximum values are determined by sched_get_priority_min() and sched_get_priority_max(), usual values for linux are 1 and 99.<br><br>In order to use this, the user you run boblightd as must have permissions to use SCHED_FIFO priority, the easiest way to accomplish this is to run boblightd as root, but this is not recommended (however it's convenient for testing).<br><br>If you want to give just your user SCHED_FIFO permissions, you can add this line to /etc/security/limits.conf:<br>user   -  rtprio     99<br>However this only works for PAM login shells, it will not work in a boot script.<br><br>If you want to use SCHED_FIFO in boblightd, and run boblightd as a regular user, you can use this in your boot script:<br>ulimit -r 99<br>sudo -l user /usr/local/bin/boblightd<br>For this to work the boot script has to run as root.
+
 Example `[device]` sections:
 
 {{{
