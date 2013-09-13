@@ -22,19 +22,20 @@
 #include "util/inclstdint.h"
 
 //device types
-#define NOTHING  0
-#define MOMO     1
-#define ATMO     2
-#define POPEN    3
-#define LTBL     4
-#define SOUND    5
-#define DIODER   6
-#define KARATE   7
-#define IBELIGHT 8
-#define OLA      9
-#define SEDU     10
-#define LPD8806  11
-#define WS2801   12
+#define NOTHING   0
+#define MOMO      1
+#define ATMO      2
+#define POPEN     3
+#define LTBL      4
+#define SOUND     5
+#define DIODER    6
+#define KARATE    7
+#define IBELIGHT  8
+#define OLA       9
+#define SEDU      10
+#define LPD8806   11
+#define WS2801    12
+#define LIGHTPACK 13
 
 #include <string>
 #include <vector>
