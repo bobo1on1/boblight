@@ -131,9 +131,9 @@ am__boblightd_SOURCES_DIST = util/condition.cpp util/log.cpp \
 	configuration.cpp device/device.cpp device/devicepopen.cpp \
 	device/devicers232.cpp device/deviceltbl.cpp \
 	device/devicedioder.cpp util/signaltimer.cpp \
-	device/devicesound.cpp device/deviceibelight.cpp \
-	device/devicelightpack.cpp device/deviceola.cpp \
-	device/devicespi.cpp
+	util/daemonize.cpp device/devicesound.cpp \
+	device/deviceibelight.cpp device/devicelightpack.cpp \
+	device/deviceola.cpp device/devicespi.cpp
 @HAVE_PORTAUDIO_TRUE@am__objects_2 = devicesound.$(OBJEXT)
 @HAVE_LIBUSB_TRUE@am__objects_3 = deviceibelight.$(OBJEXT) \
 @HAVE_LIBUSB_TRUE@	devicelightpack.$(OBJEXT)
@@ -146,8 +146,8 @@ am_boblightd_OBJECTS = condition.$(OBJEXT) log.$(OBJEXT) \
 	client.$(OBJEXT) light.$(OBJEXT) configuration.$(OBJEXT) \
 	device.$(OBJEXT) devicepopen.$(OBJEXT) devicers232.$(OBJEXT) \
 	deviceltbl.$(OBJEXT) devicedioder.$(OBJEXT) \
-	signaltimer.$(OBJEXT) $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_5)
+	signaltimer.$(OBJEXT) daemonize.$(OBJEXT) $(am__objects_2) \
+	$(am__objects_3) $(am__objects_4) $(am__objects_5)
 boblightd_OBJECTS = $(am_boblightd_OBJECTS)
 boblightd_DEPENDENCIES =
 boblightd_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -326,8 +326,9 @@ boblightd_SOURCES = util/condition.cpp util/log.cpp util/misc.cpp \
 	util/tcpsocket.cpp util/messagequeue.cpp client.cpp light.cpp \
 	configuration.cpp device/device.cpp device/devicepopen.cpp \
 	device/devicers232.cpp device/deviceltbl.cpp \
-	device/devicedioder.cpp util/signaltimer.cpp $(am__append_5) \
-	$(am__append_7) $(am__append_9) $(am__append_11)
+	device/devicedioder.cpp util/signaltimer.cpp \
+	util/daemonize.cpp $(am__append_5) $(am__append_7) \
+	$(am__append_9) $(am__append_11)
 boblightd_LDFLAGS = $(am__append_6) $(am__append_8) $(am__append_10)
 boblightd_LDADD = 
 lib_LTLIBRARIES = \
@@ -476,6 +477,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/client.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/condition.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/configuration.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/daemonize.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/device.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/devicedioder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/deviceibelight.Po@am__quote@
@@ -960,6 +962,20 @@ signaltimer.obj: util/signaltimer.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='util/signaltimer.cpp' object='signaltimer.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o signaltimer.obj `if test -f 'util/signaltimer.cpp'; then $(CYGPATH_W) 'util/signaltimer.cpp'; else $(CYGPATH_W) '$(srcdir)/util/signaltimer.cpp'; fi`
+
+daemonize.o: util/daemonize.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT daemonize.o -MD -MP -MF $(DEPDIR)/daemonize.Tpo -c -o daemonize.o `test -f 'util/daemonize.cpp' || echo '$(srcdir)/'`util/daemonize.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/daemonize.Tpo $(DEPDIR)/daemonize.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='util/daemonize.cpp' object='daemonize.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o daemonize.o `test -f 'util/daemonize.cpp' || echo '$(srcdir)/'`util/daemonize.cpp
+
+daemonize.obj: util/daemonize.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT daemonize.obj -MD -MP -MF $(DEPDIR)/daemonize.Tpo -c -o daemonize.obj `if test -f 'util/daemonize.cpp'; then $(CYGPATH_W) 'util/daemonize.cpp'; else $(CYGPATH_W) '$(srcdir)/util/daemonize.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/daemonize.Tpo $(DEPDIR)/daemonize.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='util/daemonize.cpp' object='daemonize.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o daemonize.obj `if test -f 'util/daemonize.cpp'; then $(CYGPATH_W) 'util/daemonize.cpp'; else $(CYGPATH_W) '$(srcdir)/util/daemonize.cpp'; fi`
 
 devicesound.o: device/devicesound.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT devicesound.o -MD -MP -MF $(DEPDIR)/devicesound.Tpo -c -o devicesound.o `test -f 'device/devicesound.cpp' || echo '$(srcdir)/'`device/devicesound.cpp
