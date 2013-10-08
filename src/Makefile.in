@@ -94,7 +94,7 @@ PROGRAMS = $(bin_PROGRAMS)
 am__boblight_X11_SOURCES_DIST = clients/boblight-X11/boblight-X11.cpp \
 	util/timer.cpp util/condition.cpp util/mutex.cpp \
 	util/thread.cpp util/misc.cpp util/timeutils.cpp \
-	clients/boblight-X11/grabber-base.cpp \
+	util/daemonize.cpp clients/boblight-X11/grabber-base.cpp \
 	clients/boblight-X11/grabber-xgetimage.cpp \
 	clients/boblight-X11/grabber-xrender.cpp \
 	clients/boblight-X11/flagmanager-X11.cpp \
@@ -102,10 +102,10 @@ am__boblight_X11_SOURCES_DIST = clients/boblight-X11/boblight-X11.cpp \
 @HAVE_OPENGL_TRUE@am__objects_1 = vblanksignal.$(OBJEXT)
 am_boblight_X11_OBJECTS = boblight-X11.$(OBJEXT) timer.$(OBJEXT) \
 	condition.$(OBJEXT) mutex.$(OBJEXT) thread.$(OBJEXT) \
-	misc.$(OBJEXT) timeutils.$(OBJEXT) grabber-base.$(OBJEXT) \
-	grabber-xgetimage.$(OBJEXT) grabber-xrender.$(OBJEXT) \
-	flagmanager-X11.$(OBJEXT) flagmanager.$(OBJEXT) \
-	$(am__objects_1)
+	misc.$(OBJEXT) timeutils.$(OBJEXT) daemonize.$(OBJEXT) \
+	grabber-base.$(OBJEXT) grabber-xgetimage.$(OBJEXT) \
+	grabber-xrender.$(OBJEXT) flagmanager-X11.$(OBJEXT) \
+	flagmanager.$(OBJEXT) $(am__objects_1)
 boblight_X11_OBJECTS = $(am_boblight_X11_OBJECTS)
 boblight_X11_LDADD = $(LDADD)
 boblight_X11_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -113,12 +113,12 @@ boblight_X11_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(CXXFLAGS) $(boblight_X11_LDFLAGS) $(LDFLAGS) -o $@
 am_boblight_constant_OBJECTS = boblight-constant.$(OBJEXT) \
 	flagmanager.$(OBJEXT) flagmanager-constant.$(OBJEXT) \
-	misc.$(OBJEXT)
+	misc.$(OBJEXT) daemonize.$(OBJEXT)
 boblight_constant_OBJECTS = $(am_boblight_constant_OBJECTS)
 boblight_constant_LDADD = $(LDADD)
 am_boblight_v4l_OBJECTS = boblight-v4l.$(OBJEXT) \
 	flagmanager-v4l.$(OBJEXT) misc.$(OBJEXT) flagmanager.$(OBJEXT) \
-	videograbber.$(OBJEXT)
+	videograbber.$(OBJEXT) daemonize.$(OBJEXT)
 boblight_v4l_OBJECTS = $(am_boblight_v4l_OBJECTS)
 boblight_v4l_LDADD = $(LDADD)
 boblight_v4l_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -302,19 +302,21 @@ boblight_v4l_SOURCES = \
 	clients/boblight-v4l/flagmanager-v4l.cpp \
 	util/misc.cpp \
 	clients/flagmanager.cpp \
-	clients/boblight-v4l/videograbber.cpp
+	clients/boblight-v4l/videograbber.cpp \
+        util/daemonize.cpp
 
 boblight_v4l_LDFLAGS = -lavutil -lavcodec -lavformat -lswscale -lavdevice -lX11
 boblight_constant_SOURCES = \
 	clients/boblight-constant/boblight-constant.cpp \
 	clients/flagmanager.cpp \
 	clients/boblight-constant/flagmanager-constant.cpp \
-	util/misc.cpp
+	util/misc.cpp \
+        util/daemonize.cpp
 
 boblight_X11_SOURCES = clients/boblight-X11/boblight-X11.cpp \
 	util/timer.cpp util/condition.cpp util/mutex.cpp \
 	util/thread.cpp util/misc.cpp util/timeutils.cpp \
-	clients/boblight-X11/grabber-base.cpp \
+	util/daemonize.cpp clients/boblight-X11/grabber-base.cpp \
 	clients/boblight-X11/grabber-xgetimage.cpp \
 	clients/boblight-X11/grabber-xrender.cpp \
 	clients/boblight-X11/flagmanager-X11.cpp \
@@ -669,6 +671,20 @@ timeutils.obj: util/timeutils.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o timeutils.obj `if test -f 'util/timeutils.cpp'; then $(CYGPATH_W) 'util/timeutils.cpp'; else $(CYGPATH_W) '$(srcdir)/util/timeutils.cpp'; fi`
 
+daemonize.o: util/daemonize.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT daemonize.o -MD -MP -MF $(DEPDIR)/daemonize.Tpo -c -o daemonize.o `test -f 'util/daemonize.cpp' || echo '$(srcdir)/'`util/daemonize.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/daemonize.Tpo $(DEPDIR)/daemonize.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='util/daemonize.cpp' object='daemonize.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o daemonize.o `test -f 'util/daemonize.cpp' || echo '$(srcdir)/'`util/daemonize.cpp
+
+daemonize.obj: util/daemonize.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT daemonize.obj -MD -MP -MF $(DEPDIR)/daemonize.Tpo -c -o daemonize.obj `if test -f 'util/daemonize.cpp'; then $(CYGPATH_W) 'util/daemonize.cpp'; else $(CYGPATH_W) '$(srcdir)/util/daemonize.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/daemonize.Tpo $(DEPDIR)/daemonize.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='util/daemonize.cpp' object='daemonize.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o daemonize.obj `if test -f 'util/daemonize.cpp'; then $(CYGPATH_W) 'util/daemonize.cpp'; else $(CYGPATH_W) '$(srcdir)/util/daemonize.cpp'; fi`
+
 grabber-base.o: clients/boblight-X11/grabber-base.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT grabber-base.o -MD -MP -MF $(DEPDIR)/grabber-base.Tpo -c -o grabber-base.o `test -f 'clients/boblight-X11/grabber-base.cpp' || echo '$(srcdir)/'`clients/boblight-X11/grabber-base.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/grabber-base.Tpo $(DEPDIR)/grabber-base.Po
@@ -962,20 +978,6 @@ signaltimer.obj: util/signaltimer.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='util/signaltimer.cpp' object='signaltimer.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o signaltimer.obj `if test -f 'util/signaltimer.cpp'; then $(CYGPATH_W) 'util/signaltimer.cpp'; else $(CYGPATH_W) '$(srcdir)/util/signaltimer.cpp'; fi`
-
-daemonize.o: util/daemonize.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT daemonize.o -MD -MP -MF $(DEPDIR)/daemonize.Tpo -c -o daemonize.o `test -f 'util/daemonize.cpp' || echo '$(srcdir)/'`util/daemonize.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/daemonize.Tpo $(DEPDIR)/daemonize.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='util/daemonize.cpp' object='daemonize.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o daemonize.o `test -f 'util/daemonize.cpp' || echo '$(srcdir)/'`util/daemonize.cpp
-
-daemonize.obj: util/daemonize.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT daemonize.obj -MD -MP -MF $(DEPDIR)/daemonize.Tpo -c -o daemonize.obj `if test -f 'util/daemonize.cpp'; then $(CYGPATH_W) 'util/daemonize.cpp'; else $(CYGPATH_W) '$(srcdir)/util/daemonize.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/daemonize.Tpo $(DEPDIR)/daemonize.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='util/daemonize.cpp' object='daemonize.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o daemonize.obj `if test -f 'util/daemonize.cpp'; then $(CYGPATH_W) 'util/daemonize.cpp'; else $(CYGPATH_W) '$(srcdir)/util/daemonize.cpp'; fi`
 
 devicesound.o: device/devicesound.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT devicesound.o -MD -MP -MF $(DEPDIR)/devicesound.Tpo -c -o devicesound.o `test -f 'device/devicesound.cpp' || echo '$(srcdir)/'`device/devicesound.cpp
