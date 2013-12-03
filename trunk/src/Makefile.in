@@ -130,8 +130,8 @@ am__boblightd_SOURCES_DIST = util/condition.cpp util/log.cpp \
 	util/tcpsocket.cpp util/messagequeue.cpp client.cpp light.cpp \
 	configuration.cpp device/device.cpp device/devicepopen.cpp \
 	device/devicers232.cpp device/deviceltbl.cpp \
-	device/devicedioder.cpp util/signaltimer.cpp \
-	util/daemonize.cpp device/devicesound.cpp \
+	device/devicedioder.cpp device/deviceambioder.cpp \
+	util/signaltimer.cpp util/daemonize.cpp device/devicesound.cpp \
 	device/deviceibelight.cpp device/devicelightpack.cpp \
 	device/deviceola.cpp device/devicespi.cpp
 @HAVE_PORTAUDIO_TRUE@am__objects_2 = devicesound.$(OBJEXT)
@@ -146,8 +146,9 @@ am_boblightd_OBJECTS = condition.$(OBJEXT) log.$(OBJEXT) \
 	client.$(OBJEXT) light.$(OBJEXT) configuration.$(OBJEXT) \
 	device.$(OBJEXT) devicepopen.$(OBJEXT) devicers232.$(OBJEXT) \
 	deviceltbl.$(OBJEXT) devicedioder.$(OBJEXT) \
-	signaltimer.$(OBJEXT) daemonize.$(OBJEXT) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4) $(am__objects_5)
+	deviceambioder.$(OBJEXT) signaltimer.$(OBJEXT) \
+	daemonize.$(OBJEXT) $(am__objects_2) $(am__objects_3) \
+	$(am__objects_4) $(am__objects_5)
 boblightd_OBJECTS = $(am_boblightd_OBJECTS)
 boblightd_DEPENDENCIES =
 boblightd_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -328,9 +329,9 @@ boblightd_SOURCES = util/condition.cpp util/log.cpp util/misc.cpp \
 	util/tcpsocket.cpp util/messagequeue.cpp client.cpp light.cpp \
 	configuration.cpp device/device.cpp device/devicepopen.cpp \
 	device/devicers232.cpp device/deviceltbl.cpp \
-	device/devicedioder.cpp util/signaltimer.cpp \
-	util/daemonize.cpp $(am__append_5) $(am__append_7) \
-	$(am__append_9) $(am__append_11)
+	device/devicedioder.cpp device/deviceambioder.cpp \
+	util/signaltimer.cpp util/daemonize.cpp $(am__append_5) \
+	$(am__append_7) $(am__append_9) $(am__append_11)
 boblightd_LDFLAGS = $(am__append_6) $(am__append_8) $(am__append_10)
 boblightd_LDADD = 
 lib_LTLIBRARIES = \
@@ -481,6 +482,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/configuration.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/daemonize.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/device.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/deviceambioder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/devicedioder.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/deviceibelight.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/devicelightpack.Po@am__quote@
@@ -964,6 +966,20 @@ devicedioder.obj: device/devicedioder.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='device/devicedioder.cpp' object='devicedioder.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o devicedioder.obj `if test -f 'device/devicedioder.cpp'; then $(CYGPATH_W) 'device/devicedioder.cpp'; else $(CYGPATH_W) '$(srcdir)/device/devicedioder.cpp'; fi`
+
+deviceambioder.o: device/deviceambioder.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT deviceambioder.o -MD -MP -MF $(DEPDIR)/deviceambioder.Tpo -c -o deviceambioder.o `test -f 'device/deviceambioder.cpp' || echo '$(srcdir)/'`device/deviceambioder.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/deviceambioder.Tpo $(DEPDIR)/deviceambioder.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='device/deviceambioder.cpp' object='deviceambioder.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o deviceambioder.o `test -f 'device/deviceambioder.cpp' || echo '$(srcdir)/'`device/deviceambioder.cpp
+
+deviceambioder.obj: device/deviceambioder.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT deviceambioder.obj -MD -MP -MF $(DEPDIR)/deviceambioder.Tpo -c -o deviceambioder.obj `if test -f 'device/deviceambioder.cpp'; then $(CYGPATH_W) 'device/deviceambioder.cpp'; else $(CYGPATH_W) '$(srcdir)/device/deviceambioder.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/deviceambioder.Tpo $(DEPDIR)/deviceambioder.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='device/deviceambioder.cpp' object='deviceambioder.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o deviceambioder.obj `if test -f 'device/deviceambioder.cpp'; then $(CYGPATH_W) 'device/deviceambioder.cpp'; else $(CYGPATH_W) '$(srcdir)/device/deviceambioder.cpp'; fi`
 
 signaltimer.o: util/signaltimer.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT signaltimer.o -MD -MP -MF $(DEPDIR)/signaltimer.Tpo -c -o signaltimer.o `test -f 'util/signaltimer.cpp' || echo '$(srcdir)/'`util/signaltimer.cpp
