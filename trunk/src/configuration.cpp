@@ -305,7 +305,7 @@ bool CConfig::CheckDeviceConfig()
         continue; //can't check these here
       }
       else if (key == "rate" || key == "channels" || key == "interval" || key == "period" ||
-               key == "bits" || key == "delayafteropen" || key == "max")
+               key == "bits" || key == "delayafteropen" || key == "max" || key == "precision")
       { //these are of type integer not lower than 1
         int64_t ivalue;
         if (!StrToInt(value, ivalue) || ivalue < 1 || (key == "bits" && ivalue > 32) || (key == "max" && ivalue > 0xFFFFFFFF))
@@ -750,6 +750,17 @@ bool CConfig::BuildDeviceConfig(std::vector<CDevice*>& devices, CClientsHandler&
       }
       devices.push_back(device);
     }
+    else if (type == "ambioder")
+    {
+      CDevice* device = NULL;
+      if (!BuildAmbioder(device, i, clients))
+      {
+        if (device)
+          delete device;
+        return false;
+      }
+      devices.push_back(device);
+    }
     else if (type == "ibelight")
     {
 #ifdef HAVE_LIBUSB
@@ -1152,6 +1163,59 @@ bool CConfig::BuildDioder(CDevice*& device, int devicenr, CClientsHandler& clien
   
   return true;
 
+}
+
+bool CConfig::BuildAmbioder(CDevice*& device, int devicenr, CClientsHandler& clients)
+{
+  CDeviceAmbioder* ambioderdevice = new CDeviceAmbioder(clients);
+
+  device = ambioderdevice;
+
+  if (!SetDeviceName(ambioderdevice, devicenr))
+    return false;
+
+  if (!SetDeviceOutput(ambioderdevice, devicenr))
+    return false;
+
+  if (!SetDeviceChannels(ambioderdevice, devicenr))
+    return false;
+
+  if (!SetDeviceRate(ambioderdevice, devicenr))
+    return false;
+
+  if (!SetDeviceInterval(ambioderdevice, devicenr))
+    return false;
+
+  if (!SetDevicePrecision(ambioderdevice, devicenr))
+    return false;
+
+  SetDeviceAllowSync(device, devicenr);
+  SetDeviceDebug(device, devicenr);
+  SetDeviceDelayAfterOpen(device, devicenr);
+  SetDeviceThreadPriority(device, devicenr);
+
+  device->SetType(AMBIODER);
+
+  return true;
+
+}
+
+bool CConfig::SetDevicePrecision(CDeviceAmbioder*& device, int devicenr)
+{
+  string line, strvalue;
+  int linenr = GetLineWithKey("precision", m_devicelines[devicenr].lines, line);
+  if (linenr == -1)
+    return false;
+
+  GetWord(line, strvalue);
+
+  int precision;
+  StrToInt(strvalue, precision);
+
+  if(!device->SetPrecision(precision))
+    return false;
+
+  return true;
 }
 
 #ifdef HAVE_LINUX_SPI_SPIDEV_H
