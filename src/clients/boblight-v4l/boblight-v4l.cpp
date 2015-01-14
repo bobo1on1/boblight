@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <signal.h>
+#include <unistd.h>
 
 #define BOBLIGHT_DLOPEN
 #include "lib/boblight.h"
